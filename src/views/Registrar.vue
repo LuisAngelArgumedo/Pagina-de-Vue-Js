@@ -25,11 +25,9 @@
 
         <!-- Campo Usuario -->
         <div class="mb-3">
-          <label for="usuario" class="form-label">
-            <i class="fas fa-user me-2"></i>Usuario
-          </label>
-          <input 
-            type="text" 
+          <label for="usuario" class="form-label"> <i class="fas fa-user me-2"></i>Usuario </label>
+          <input
+            type="text"
             class="form-control custom-input"
             id="usuario"
             v-model="usuario"
@@ -44,7 +42,7 @@
             <i class="fas fa-lock me-2"></i>Contraseña
           </label>
           <div class="input-group position-relative">
-            <input 
+            <input
               :type="showPassword ? 'text' : 'password'"
               class="form-control custom-input"
               id="contrasena"
@@ -52,11 +50,7 @@
               placeholder="Ingresa tu contraseña"
               required
             />
-            <button 
-              type="button" 
-              class="password-toggle"
-              @click="showPassword = !showPassword"
-            >
+            <button type="button" class="password-toggle" @click="showPassword = !showPassword">
               <i :class="showPassword ? 'fas fa-eye-slash' : 'fas fa-eye'"></i>
             </button>
           </div>
@@ -70,7 +64,7 @@
 
         <div class="text-center">
           <p class="login-link">
-            ¿Ya tienes cuenta? 
+            ¿Ya tienes cuenta?
             <router-link to="/login" class="link-custom">Inicia sesión aquí</router-link>
           </p>
         </div>
@@ -104,7 +98,7 @@ export default {
     return {
       usuario: '',
       contrasena: '',
-      showPassword: false
+      showPassword: false,
     }
   },
   methods: {
@@ -219,8 +213,9 @@ form {
   backdrop-filter: blur(20px);
   border: 1px solid rgba(148, 163, 184, 0.2);
   border-radius: 16px !important;
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 
-              0 10px 10px -5px rgba(0, 0, 0, 0.04) !important;
+  box-shadow:
+    0 20px 25px -5px rgba(0, 0, 0, 0.1),
+    0 10px 10px -5px rgba(0, 0, 0, 0.04) !important;
   transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
@@ -264,8 +259,13 @@ form:hover {
 }
 
 @keyframes pulse {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.05); }
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
 }
 
 /* Títulos */
@@ -363,7 +363,7 @@ form:hover {
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
   transition: left 0.5s;
 }
 
@@ -457,11 +457,11 @@ form:hover {
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
-.google { 
+.google {
   background: linear-gradient(135deg, #dd4b39, #c23321);
 }
 
-.facebook { 
+.facebook {
   background: linear-gradient(135deg, #3b5998, #2d4373);
 }
 
@@ -470,42 +470,42 @@ form:hover {
   .auth-container {
     padding: 10px;
   }
-  
+
   form {
     padding: 30px 25px !important;
     margin: 10px;
   }
-  
+
   .logo {
     width: 60px;
     height: 60px;
     font-size: 24px;
   }
-  
+
   .form-title {
     font-size: 22px;
   }
-  
+
   .custom-input {
     padding: 10px 14px;
     font-size: 14px;
   }
-  
+
   .btn-custom {
     padding: 12px 20px;
     font-size: 15px;
   }
-  
+
   .social-buttons {
     flex-direction: column;
     gap: 10px;
   }
-  
+
   .social-btn {
     max-width: none;
     justify-content: center;
   }
-  
+
   .password-toggle {
     right: 10px;
   }
@@ -515,11 +515,11 @@ form:hover {
   form {
     padding: 25px 20px !important;
   }
-  
+
   .form-title {
     font-size: 20px;
   }
-  
+
   .custom-input {
     padding: 10px 12px;
   }
@@ -541,11 +541,11 @@ form:hover .logo {
   .btn-custom:hover {
     transform: none;
   }
-  
+
   form:hover {
     transform: none;
   }
-  
+
   form:hover .logo {
     transform: none;
   }

@@ -24,8 +24,8 @@
           <div class="form-group">
             <div class="input-container">
               <i class="fas fa-envelope input-icon"></i>
-              <input 
-                type="text" 
+              <input
+                type="text"
                 v-model="usuario"
                 placeholder="Usuario o correo"
                 class="form-input"
@@ -37,18 +37,14 @@
           <div class="form-group">
             <div class="input-container">
               <i class="fas fa-lock input-icon"></i>
-              <input 
+              <input
                 :type="showPassword ? 'text' : 'password'"
                 v-model="contrasena"
                 placeholder="Contraseña"
                 class="form-input"
                 required
               />
-              <button 
-                type="button" 
-                class="password-toggle"
-                @click="showPassword = !showPassword"
-              >
+              <button type="button" class="password-toggle" @click="showPassword = !showPassword">
                 <i :class="showPassword ? 'fas fa-eye-slash' : 'fas fa-eye'"></i>
               </button>
             </div>
@@ -56,11 +52,13 @@
 
           <div class="form-options">
             <label class="checkbox-container">
-              <input type="checkbox" v-model="rememberMe">
+              <input type="checkbox" v-model="rememberMe" />
               <span class="checkmark"></span>
               Recordarme
             </label>
-            <a href="#" class="forgot-password">¿Olvidaste tu contraseña?</a>
+            <router-link to="/SolicitarReset" class="forgot-password">
+              ¿Olvidaste tu contraseña?
+            </router-link>
           </div>
 
           <button type="submit" class="btn-primary" :disabled="cargando">
@@ -73,7 +71,8 @@
         </form>
 
         <div class="auth-footer">
-          <p>¿No tienes una cuenta? 
+          <p>
+            ¿No tienes una cuenta?
             <router-link to="/registro" class="link-button">Regístrate aquí</router-link>
           </p>
         </div>
@@ -92,7 +91,7 @@ export default {
       contrasena: '',
       cargando: false,
       showPassword: false,
-      rememberMe: false
+      rememberMe: false,
     }
   },
   methods: {
@@ -233,8 +232,9 @@ export default {
   backdrop-filter: blur(20px);
   border-radius: 16px;
   padding: 40px;
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 
-              0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  box-shadow:
+    0 20px 25px -5px rgba(0, 0, 0, 0.1),
+    0 10px 10px -5px rgba(0, 0, 0, 0.04);
   border: 1px solid rgba(148, 163, 184, 0.2);
   position: relative;
   overflow: hidden;
@@ -476,7 +476,7 @@ export default {
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
   transition: left 0.5s;
 }
 
@@ -548,19 +548,19 @@ export default {
     width: 90vw;
     padding: 30px 25px;
   }
-  
+
   .form-options {
     flex-direction: column;
     gap: 15px;
     align-items: flex-start;
   }
-  
+
   .logo {
     width: 60px;
     height: 60px;
     font-size: 24px;
   }
-  
+
   .auth-title {
     font-size: 22px;
   }
@@ -577,11 +577,11 @@ export default {
   .btn-primary:hover {
     transform: none;
   }
-  
+
   .auth-card:hover {
     transform: none;
   }
-  
+
   .auth-card:hover .logo {
     transform: none;
   }
