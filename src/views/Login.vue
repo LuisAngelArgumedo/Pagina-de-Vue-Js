@@ -6,7 +6,7 @@
       <div class="shape shape-2"></div>
       <div class="shape shape-3"></div>
     </div>
-
+    
     <!-- Contenedor principal -->
     <div class="auth-wrapper">
       <div class="auth-card">
@@ -19,7 +19,7 @@
           <h2 class="auth-title">Bienvenido de vuelta</h2>
           <p class="auth-subtitle">Inicia sesión en tu cuenta</p>
         </div>
-
+        
         <form @submit.prevent="handleLogin" class="auth-form">
           <div class="form-group">
             <div class="input-container">
@@ -27,13 +27,13 @@
               <input
                 type="text"
                 v-model="usuario"
-                placeholder="Usuario o correo"
+                placeholder="Usuario"
                 class="form-input"
                 required
               />
             </div>
           </div>
-
+          
           <div class="form-group">
             <div class="input-container">
               <i class="fas fa-lock input-icon"></i>
@@ -49,18 +49,18 @@
               </button>
             </div>
           </div>
-
+          
           <div class="form-options">
             <label class="checkbox-container">
               <input type="checkbox" v-model="rememberMe" />
               <span class="checkmark"></span>
               Recordarme
             </label>
-            <router-link to="/SolicitarReset" class="forgot-password">
+            <a href="#" @click.prevent="openModal" class="forgot-password">
               ¿Olvidaste tu contraseña?
-            </router-link>
+            </a>
           </div>
-
+          
           <button type="submit" class="btn-primary" :disabled="cargando">
             <span v-if="cargando" class="loading-spinner"></span>
             <span v-else>
@@ -69,12 +69,49 @@
             </span>
           </button>
         </form>
-
+        
         <div class="auth-footer">
           <p>
             ¿No tienes una cuenta?
             <router-link to="/registro" class="link-button">Regístrate aquí</router-link>
           </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal de recuperación de contraseña -->
+    <div v-if="showModal" class="modal-overlay" @click="closeModal">
+      <div class="modal-container" @click.stop>
+        <div class="modal-header">
+          <h2 class="modal-title">Recuperar contraseña</h2>
+          <button class="modal-close" @click="closeModal">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+        
+        <div class="modal-body">
+          <form @submit.prevent="solicitarReset">
+            <div class="form-group">
+              <div class="input-container">
+                <i class="fas fa-envelope input-icon"></i>
+                <input
+                  v-model="usuarioReset"
+                  type="text"
+                  class="form-input"
+                  placeholder="Ingresa tu correo"
+                  required
+                />
+              </div>
+            </div>
+            
+            <button type="submit" class="btn-primary" :disabled="cargandoReset">
+              <span v-if="cargandoReset" class="loading-spinner"></span>
+              <span v-else>
+                <i class="fas fa-paper-plane"></i>
+                Enviar enlace
+              </span>
+            </button>
+          </form>
         </div>
       </div>
     </div>
@@ -92,6 +129,9 @@ export default {
       cargando: false,
       showPassword: false,
       rememberMe: false,
+      showModal: false,
+      usuarioReset: '',
+      cargandoReset: false,
     }
   },
   methods: {
@@ -108,7 +148,9 @@ export default {
             contrasena: this.contrasena,
           }),
         })
+        
         const data = await response.json()
+        
         if (response.ok) {
           // Guardar sesión en localStorage
           localStorage.setItem('isAuthenticated', 'true')
@@ -140,6 +182,58 @@ export default {
         this.cargando = false
       }
     },
+    
+    openModal() {
+      this.showModal = true
+      this.usuarioReset = ''
+    },
+    
+    closeModal() {
+      this.showModal = false
+      this.usuarioReset = ''
+      this.cargandoReset = false
+    },
+    
+    async solicitarReset() {
+      this.cargandoReset = true
+      try {
+        const response = await fetch('http://localhost:3001/solicitar-reset', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            destinatario: this.usuarioReset
+          }),
+        })
+        
+        if (response.ok) {
+          Swal.fire({
+            icon: 'success',
+            title: '¡Enlace enviado!',
+            text: 'Revisa tu correo para restablecer tu contraseña',
+            showConfirmButton: false,
+            timer: 2000,
+          })
+          this.closeModal()
+        } else {
+          Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'Error al enviar el correo. Verifica el correo ingresado',
+          })
+        }
+      } catch (error) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Error del servidor',
+          text: 'No se pudo conectar con el servidor',
+        })
+        console.error(error)
+      } finally {
+        this.cargandoReset = false
+      }
+    }
   },
 }
 </script>
@@ -542,27 +636,145 @@ export default {
   text-decoration: underline;
 }
 
+/* Estilos del Modal */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 20px;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.modal-container {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  border-radius: 16px;
+  width: 100%;
+  max-width: 450px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  position: relative;
+  overflow: hidden;
+  animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-50px) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.modal-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #3b82f6, #1e40af, #1e3a8a);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30px 30px 0 30px;
+  margin-bottom: 20px;
+}
+
+.modal-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: #1e293b;
+  margin: 0;
+}
+
+.modal-close {
+  background: none;
+  border: none;
+  font-size: 20px;
+  color: #6b7280;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+}
+
+.modal-close:hover {
+  background: rgba(239, 68, 68, 0.1);
+  color: #ef4444;
+  transform: scale(1.1);
+}
+
+.modal-body {
+  padding: 0 30px 30px 30px;
+}
+
 /* Responsive */
 @media (max-width: 480px) {
   .auth-card {
     width: 90vw;
     padding: 30px 25px;
   }
-
+  
   .form-options {
     flex-direction: column;
     gap: 15px;
     align-items: flex-start;
   }
-
+  
   .logo {
     width: 60px;
     height: 60px;
     font-size: 24px;
   }
-
+  
   .auth-title {
     font-size: 22px;
+  }
+  
+  .modal-container {
+    margin: 10px;
+    max-width: calc(100vw - 20px);
+  }
+  
+  .modal-header {
+    padding: 20px 20px 0 20px;
+  }
+  
+  .modal-body {
+    padding: 0 20px 20px 20px;
+  }
+  
+  .modal-title {
+    font-size: 20px;
   }
 }
 
@@ -577,11 +789,9 @@ export default {
   .btn-primary:hover {
     transform: none;
   }
-
   .auth-card:hover {
     transform: none;
   }
-
   .auth-card:hover .logo {
     transform: none;
   }

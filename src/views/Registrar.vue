@@ -6,12 +6,11 @@
       <div class="shape shape-2"></div>
       <div class="shape shape-3"></div>
     </div>
-
     <!-- Contenedor principal -->
     <div class="auth-wrapper">
       <form
         class="p-4 rounded shadow-lg bg-white w-100"
-        style="max-width: 400px"
+        style="max-width: 480px"
         @submit.prevent="registrarUsuario"
       >
         <div class="text-center mb-4">
@@ -22,7 +21,6 @@
           </div>
           <h2 class="form-title">Registro de Usuario</h2>
         </div>
-
         <!-- Campo Usuario -->
         <div class="mb-3">
           <label for="usuario" class="form-label"> <i class="fas fa-user me-2"></i>Usuario </label>
@@ -35,7 +33,6 @@
             required
           />
         </div>
-
         <!-- Campo Contraseña -->
         <div class="mb-4">
           <label for="contrasena" class="form-label">
@@ -55,20 +52,17 @@
             </button>
           </div>
         </div>
-
         <!-- Botón de registro -->
         <button type="submit" class="btn-custom w-100 mb-3">
           <i class="fas fa-user-plus me-2"></i>
           Registrar
         </button>
-
         <div class="text-center">
           <p class="login-link">
             ¿Ya tienes cuenta?
             <router-link to="/login" class="link-custom">Inicia sesión aquí</router-link>
           </p>
         </div>
-
         <!-- Registro social -->
         <div class="social-login">
           <div class="divider">
@@ -92,7 +86,6 @@
 
 <script>
 import axios from 'axios'
-
 export default {
   data() {
     return {
@@ -130,7 +123,6 @@ export default {
 .fade-leave-active {
   transition: all 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
-
 .fade-enter-from,
 .fade-leave-to {
   opacity: 0;
@@ -220,7 +212,7 @@ form {
   position: relative;
   overflow: hidden;
   width: 100%;
-  max-width: 400px;
+  max-width: 480px;
 }
 
 form::before {
@@ -470,42 +462,34 @@ form:hover {
   .auth-container {
     padding: 10px;
   }
-
   form {
     padding: 30px 25px !important;
     margin: 10px;
   }
-
   .logo {
     width: 60px;
     height: 60px;
     font-size: 24px;
   }
-
   .form-title {
     font-size: 22px;
   }
-
   .custom-input {
     padding: 10px 14px;
     font-size: 14px;
   }
-
   .btn-custom {
     padding: 12px 20px;
     font-size: 15px;
   }
-
   .social-buttons {
     flex-direction: column;
     gap: 10px;
   }
-
   .social-btn {
     max-width: none;
     justify-content: center;
   }
-
   .password-toggle {
     right: 10px;
   }
@@ -515,11 +499,9 @@ form:hover {
   form {
     padding: 25px 20px !important;
   }
-
   .form-title {
     font-size: 20px;
   }
-
   .custom-input {
     padding: 10px 12px;
   }
@@ -541,11 +523,9 @@ form:hover .logo {
   .btn-custom:hover {
     transform: none;
   }
-
   form:hover {
     transform: none;
   }
-
   form:hover .logo {
     transform: none;
   }

@@ -6,9 +6,7 @@ import Contacto from '@/views/contacto.vue'
 import Login from '@/views/Login.vue'
 import LandingPage from '@/layouts/landingPage.vue'
 import Registrar from '@/views/Registrar.vue'
-import SolicitarReset  from '@/views/SolicitarReset.vue';
-import ResetearContraseña  from '@/views/ResetearContraseña.vue';
-import Hola from '@/views/hola.vue'
+import resetPassword from '@/views/resetPassword.vue'
 
 const routes = [
   {
@@ -18,50 +16,40 @@ const routes = [
       {
         path: '',
         name: 'Inicio',
-        component: Inicio
+        component: Inicio,
       },
       {
         path: 'crear',
         name: 'Crear',
-        component: Crear
+        component: Crear,
       },
       {
         path: 'contacto',
         name: 'Contacto',
-        component: Contacto
-      }
-    ]
+        component: Contacto,
+      },
+    ],
   },
   {
     path: '/login',
     name: 'Login',
-    component: Login
+    component: Login,
   },
   {
     path: '/registro',
     name: 'Registro',
-    component: Registrar
-  },
-   {
-    path: '/SolicitarReset',
-    name: 'SolicitarReset',
-    component: SolicitarReset
+    component: Registrar,
   },
   {
-    path: '/ResetearContraseña',
+    path: '/resetPassword/:token',
     name: 'ResetearContrasena',
-    component: ResetearContraseña
+    component: resetPassword,
   },
-   {
-    path: '/resetPassword',
-    name: 'ResetearContrasena',
-    component: Hola
-  }
 ]
 
 const router = createRouter({
   history: createWebHistory(),
-  routes
+  routes,
 })
 
 export default router
@@ -70,10 +58,16 @@ router.beforeEach((to, from, next) => {
   const isAuthenticated = localStorage.getItem('isAuthenticated')
 
   // Rutas públicas (sin necesidad de autenticación)
-  const publicRoutes = ['/login', '/registro', '/SolicitarReset', '/ResetearContraseña', '/resetPassword']
+  const publicRoutes = [
+    '/login',
+    '/registro',
+    '/SolicitarReset',
+    '/ResetearContraseña',
+    '/resetPassword',
+  ]
 
   // Verifica si la ruta actual empieza por alguna ruta pública (soporta rutas dinámicas)
-  const isPublic = publicRoutes.some(route => to.path.startsWith(route))
+  const isPublic = publicRoutes.some((route) => to.path.startsWith(route))
 
   if (!isPublic && !isAuthenticated) {
     next('/login')
@@ -83,4 +77,3 @@ router.beforeEach((to, from, next) => {
     next()
   }
 })
-
