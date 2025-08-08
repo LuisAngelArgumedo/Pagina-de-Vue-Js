@@ -6,13 +6,13 @@
           <div id="carouselExample" class="carousel slide">
             <div class="carousel-inner">
               <div class="carousel-item active">
-                <img src="/public/WMNS+AIR+JORDAN+1+MID+SE.avif" class="d-block w-100" alt="..." />
+                <img src=" /WMNS+AIR+JORDAN+1+MID+SE.avif" class="d-block w-100" alt="..." />
               </div>
               <div class="carousel-item">
-                <img src="/public/WMNS+AIR+JORDAN+1+MID.avif" class="d-block w-100" alt="..." />
+                <img src=" /WMNS+AIR+JORDAN+1+MID.avif" class="d-block w-100" alt="..." />
               </div>
               <div class="carousel-item">
-                <img src="/public/copia.jpg" class="d-block w-100" alt="..." />
+                <img src=" /copia.jpg" class="d-block w-100" alt="..." />
               </div>
             </div>
             <button
@@ -39,7 +39,7 @@
     </div>
     <div class="cards">
       <div class="card" style="width: 25rem">
-        <img src="/public/nike1.png" class="card-img-top" alt="..." />
+        <img src=" /nike1.png" class="card-img-top" alt="..." />
         <div class="card-body">
           <h5 class="card-title">Camisas nike</h5>
           <p class="card-text">
@@ -56,7 +56,7 @@
         </div>
       </div>
       <div class="card" style="width: 25rem">
-        <img src="/public/nike2.png" class="card-img-top" alt="..." />
+        <img src=" /nike2.png" class="card-img-top" alt="..." />
         <div class="card-body">
           <h5 class="card-title">Camisas nike</h5>
           <p class="card-text">
@@ -73,7 +73,7 @@
         </div>
       </div>
       <div class="card" style="width: 25rem">
-        <img src="/public/nike3.png" class="card-img-top" alt="..." />
+        <img src=" /nike3.png" class="card-img-top" alt="..." />
         <div class="card-body">
           <h5 class="card-title">Camisas nike</h5>
           <p class="card-text">
@@ -96,20 +96,20 @@
     <div class="containerPadre">
       <div class="container1">
         <div class="circuloIMG">
-          <img src="/public/logoNike.webp" alt="" />
+          <img src=" /logoNike.webp" alt="" />
         </div>
       </div>
       <div class="container2">
         <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
           <div class="carousel-inner">
             <div class="carousel-item active">
-              <img src="/public/entrenamiento.jpeg" class="d-block w-100" alt="..." />
+              <img src=" /entrenamiento.jpeg" class="d-block w-100" alt="..." />
             </div>
             <div class="carousel-item">
-              <img src="/public/entrenamiento2.avif" class="d-block w-100" alt="..." />
+              <img src=" /entrenamiento2.avif" class="d-block w-100" alt="..." />
             </div>
             <div class="carousel-item">
-              <img src="/public/entrenamiento1.avif" class="d-block w-100" alt="..." />
+              <img src=" /entrenamiento1.avif" class="d-block w-100" alt="..." />
             </div>
           </div>
         </div>
