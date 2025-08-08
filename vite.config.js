@@ -16,8 +16,10 @@ export default defineConfig({
     },
   },
   server: {
-    host: true, // <- Esto permite que se exponga en la red local
-    port: 5173, // Puedes cambiarlo si necesitas
+    host: true, // Permite exponer en red local
+    port: 5173, // Puerto por defecto
+    allowedHosts: [
+      'tiendavue.onrender.com' // 👈 Añadido para permitir tu dominio en Render
+    ]
   }
 })
-
