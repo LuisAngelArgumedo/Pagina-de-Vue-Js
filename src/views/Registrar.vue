@@ -111,7 +111,7 @@ export default {
     },
   },
 }
-</script>
+</script>pipelineScritp/police/policiesAZ/policies.ps1
 
 <style scoped>
 /* Importar Font Awesome */

@@ -1,8 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
 import Inicio from '@/views/Inicio.vue'
-import Crear from '@/views/crear.vue'
-import Contacto from '@/views/contacto.vue'
+import Crear from '@/views/Crear.vue'
+import Contacto from '@/views/Contacto.vue'
 import Login from '@/views/Login.vue'
 import LandingPage from '@/layouts/landingPage.vue'
 import Registrar from '@/views/Registrar.vue'
@@ -19,12 +19,12 @@ const routes = [
         component: Inicio,
       },
       {
-        path: 'crear',
+        path: '/crear',
         name: 'Crear',
         component: Crear,
       },
       {
-        path: 'contacto',
+        path: '/contacto',
         name: 'Contacto',
         component: Contacto,
       },
